@@ -16,7 +16,7 @@
 - Look through all of the dashboards and sheets in the main TERA file and carefully remove the ones that are redundant. This can be a tedious process but be careful.
 
 ## Best Practices
-- Pushing and pulling with the repository frequently makes the synching process much simpler. It also helps to constrain each commit to the creation, update to, or deletion of, a single dashboard or sheet at a time.
+- Pushing and pulling with the repository frequently makes the syncing process much simpler. It also helps to constrain each commit to the creation, update to, or deletion of, a single dashboard or sheet at a time.
 - Using extracts to minimize the amount of data your computer is processing at a time can vastly improve performance. Filtering your extracts by a date and time range is an easy way to do this.
 - In addition to being crucial for interfacing with GitHub, separating your packaged workbooks into distinct data and workbook files can vastly reduce the storage they require from your computer. If you have multiple workbooks that all rely on the same data you can simply have all of them point to a single data file rather than multiple copies for each workbook.
 
