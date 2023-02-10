@@ -17,7 +17,15 @@
 
 ## Best Practices
 - Pushing and pulling with the repository frequently makes the syncing process much simpler. It also helps to constrain each commit to the creation, update to, or deletion of, a single dashboard or sheet at a time.
-- Using extracts to minimize the amount of data your computer is processing at a time can vastly improve performance. Filtering your extracts by a date and time range is an easy way to do this.
+- Using extracts to minimize the amount of data your computer is processing at a time can vastly improve performance. Filtering your extracts by a date and time range is an easy way to do this:
+  - Go to the data source tab
+  - Switch your connection from live to extract
+  - Edit your extract: add a filter on date and time
+  - Select range of dates and adjust the range as desired
+    - Start with a small range, like a week, and test its performance before moving up to larger ranges like a month or year
+    - 2010 is the go-to test year
+  - Select ok to exit all of the windows and create the extract
+  - Wait for Tableau to do any preprocessing, then switch tabs out of the data source into a dashboard or sheet to create and save the extract
 - In addition to being crucial for interfacing with GitHub, separating your packaged workbooks into distinct data and workbook files can vastly reduce the storage they require from your computer. If you have multiple workbooks that all rely on the same data you can simply have all of them point to a single data file rather than multiple copies for each workbook.
 
 ## Resources
