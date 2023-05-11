@@ -1,7 +1,7 @@
 USE [TERA]
 GO
 
-/****** Object:  View [dbo].[onchangeView]    Script Date: 4/20/2023 2:56:12 PM ******/
+/****** Object:  View [dbo].[onchangeView]    Script Date: 4/25/2023 4:40:28 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,79 +9,20 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-
-
-
-
-
-CREATE OR ALTER           VIEW [dbo].[onchangeView]
+CREATE OR ALTER     VIEW [dbo].[onchangeView]
 AS
-SELECT        
-dbo.onchangeFloatTable.DateAndTime, 
-dbo.onchangeFloatTable.Millitm,
-dbo.onchangeTags.Chamber,
-dbo.onchangeFloatTable.Status, 
-dbo.onchangeFloatTable.Marker,
-dbo.onchangeTags.Measurement,
-dbo.onchangeFloatTable.Val
-FROM dbo.onchangeFloatTable INNER JOIN
---limit to only the tags we need for onChange Table
-dbo.onchangeTags ON dbo.onchangeTags.TagIndex = dbo.onchangeFloatTable.TagIndex
-WHERE
-(dbo.onchangeTags.TagIndex IN (4,8,12,16,20,24,28,32,36,40,44,48)
-OR dbo.onchangeTags.TagIndex between 49 and 56
-OR dbo.onchangeTags.TagIndex between 58 and 64
-OR dbo.onchangeTags.TagIndex between 67 and 73
-OR dbo.onchangeTags.TagIndex between 75 and 81
-OR dbo.onchangeTags.TagIndex between 83 and 89
-OR dbo.onchangeTags.TagIndex between 91 and 97
-OR dbo.onchangeTags.TagIndex between 99 and 105
-OR dbo.onchangeTags.TagIndex between 107 and 113
-OR dbo.onchangeTags.TagIndex between 115 and 121
-OR dbo.onchangeTags.TagIndex between 123 and 129
-OR dbo.onchangeTags.TagIndex between 131 and 137
-OR dbo.onchangeTags.TagIndex between 139 and 145
-OR dbo.onchangeTags.TagIndex between 170 and 193
-OR dbo.onchangeTags.TagIndex between 198 and 200
-OR dbo.onchangeTags.TagIndex between 203 and 205
-OR dbo.onchangeTags.TagIndex between 208 and 210
-OR dbo.onchangeTags.TagIndex between 213 and 215
-OR dbo.onchangeTags.TagIndex between 203 and 205
-OR dbo.onchangeTags.TagIndex IN (218, 219, 221)
-OR dbo.onchangeTags.TagIndex between 223 and 225
-OR dbo.onchangeTags.TagIndex between 228 and 230
-OR dbo.onchangeTags.TagIndex between 233 and 235
-OR dbo.onchangeTags.TagIndex between 238 and 240
-OR dbo.onchangeTags.TagIndex between 243 and 245
-OR dbo.onchangeTags.TagIndex between 248 and 250
-OR dbo.onchangeTags.TagIndex between 253 and 255
-OR dbo.onchangeTags.TagIndex between 257 and 304
-OR dbo.onchangeTags.TagIndex between 357 and 364
-OR dbo.onchangeTags.TagIndex between 368 and 375
-OR dbo.onchangeTags.TagIndex between 379 and 386
-OR dbo.onchangeTags.TagIndex between 390 and 397
-OR dbo.onchangeTags.TagIndex between 401 and 408
-OR dbo.onchangeTags.TagIndex between 412 and 419
-OR dbo.onchangeTags.TagIndex between 423 and 430
-OR dbo.onchangeTags.TagIndex between 434 and 441
-OR dbo.onchangeTags.TagIndex between 447 and 451
-OR dbo.onchangeTags.TagIndex between 455 and 462
-OR dbo.onchangeTags.TagIndex between 466 and 473
-OR dbo.onchangeTags.TagIndex between 477 and 484
-OR dbo.onchangeTags.TagIndex between 517 and 565
-OR dbo.onchangeTags.TagIndex IN (880,881,882,888,889,890,896,897,
-	898,904,905,906,912,913,914,920,921,922,928,
-	929,930,936,937,938,944,945,946,952,953,954,
-	960,961,962)
-OR dbo.onchangeTags.TagIndex between 968 and 994
-OR dbo.onchangeTags.TagIndex between 1205 and 1227
-OR dbo.onchangeTags.TagIndex between 1229 and 1276
-OR dbo.onchangeTags.TagIndex IN (1, 201)
-OR dbo.onchangeTags.TagIndex between 485 and 490
-OR dbo.onchangeTags.TagIndex between 493 and 516
-OR dbo.onchangeTags.TagIndex between 1167 and 1190
 
-);
+SELECT        
+	dbo.onchangeFloatTable.DateAndTime, 
+	dbo.onchangeFloatTable.Millitm,
+	dbo.onchangeTags.Chamber,
+	dbo.onchangeFloatTable.Status, 
+	dbo.onchangeFloatTable.Marker,
+	dbo.onchangeTags.Measurement,
+	dbo.onchangeFloatTable.Val
+FROM dbo.onchangeFloatTable
+	INNER JOIN dbo.onchangeTags ON dbo.onchangeTags.TagIndex = dbo.onchangeFloatTable.TagIndex
+WHERE dbo.onchangeTags.TagIndex IN(1,3,4,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,198,199,200,201,203,204,205,208,209,210,213,214,215,218,219,221,223,224,225,228,229,230,233,234,235,238,239,240,243,244,245,248,249,250,253,254,255,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,341,357,358,359,360,361,362,363,364,368,369,370,371,372,373,374,375,379,380,381,382,383,384,385,386,390,391,392,393,394,395,396,397,401,402,403,404,405,406,407,408,412,413,414,415,416,417,418,419,423,424,425,426,427,428,429,430,434,435,436,437,438,439,440,441,444,445,446,447,448,449,450,451,455,456,457,458,459,460,461,462,466,467,468,469,470,471,472,473,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565,880,881,882,888,889,890,896,897,898,904,905,906,912,913,914,920,921,922,928,929,930,936,937,938,944,945,946,952,953,954,960,961,962,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,990,991,992,993,994,1167,1168,1169,1170,1171,1172,1173,1174,1175,1176,1177,1178,1179,1180,1181,1182,1183,1184,1185,1186,1187,1188,1189,1190,1193,1194,1195,1196,1197,1198,1199,1200,1201,1202,1203,1204,1205,1206,1207,1208,1209,1210,1211,1212,1213,1214,1215,1216,1217,1218,1219,1220,1221,1222,1223,1224,1225,1226,1227,1228,1229,1230,1231,1232,1233,1234,1235,1236,1237,1238,1239,1240,1241,1242,1243,1244,1245,1246,1247,1248,1249,1250,1251,1252,1253,1254,1255,1256,1257,1258,1259,1260,1261,1262,1263,1264,1265,1266,1267,1268,1269,1270,1271,1272,1273,1274,1275,1276);
 
 GO
 
